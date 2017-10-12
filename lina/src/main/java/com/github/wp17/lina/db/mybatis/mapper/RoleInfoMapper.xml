@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peter.lina.db.mybatis.dao.RoleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.peter.lina.db.mybatis.model.RoleInfo">
+    <id column="role_uuid" jdbcType="VARCHAR" property="roleUuid" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="feeling" jdbcType="VARCHAR" property="feeling" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="popular" jdbcType="INTEGER" property="popular" />
+    <result column="sound_feeling" jdbcType="VARCHAR" property="soundFeeling" />
+    <result column="mood" jdbcType="INTEGER" property="mood" />
+    <result column="total_zan" jdbcType="INTEGER" property="totalZan" />
+    <result column="icon2" jdbcType="VARCHAR" property="icon2" />
+    <result column="last_charge_time" jdbcType="BIGINT" property="lastChargeTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.peter.lina.db.mybatis.model.RoleInfo">
+    <result column="prop_set" jdbcType="LONGVARCHAR" property="propSet" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_uuid, birthday, city, feeling, icon, popular, sound_feeling, mood, total_zan, 
+    icon2, last_charge_time
+  </sql>
+  <sql id="Blob_Column_List">
+    prop_set
+  </sql>
+  <select id="selectByPrimaryKey"  resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from role_info_phone_#{tableId}
+    where role_uuid = #{roleUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" >
+    delete from role_info_phone_#{tableId}
+    where role_uuid = #{roleUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.peter.lina.db.mybatis.model.RoleInfo">
+    insert into role_info_phone_#{tableId} (role_uuid, birthday, city, 
+      feeling, icon, popular, 
+      sound_feeling, mood, total_zan, 
+      icon2, last_charge_time, prop_set
+      )
+    values (#{roleUuid,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{feeling,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{popular,jdbcType=INTEGER}, 
+      #{soundFeeling,jdbcType=VARCHAR}, #{mood,jdbcType=INTEGER}, #{totalZan,jdbcType=INTEGER}, 
+      #{icon2,jdbcType=VARCHAR}, #{lastChargeTime,jdbcType=BIGINT}, #{propSet,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.peter.lina.db.mybatis.model.RoleInfo">
+    insert into role_info_phone_#{tableId}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleUuid != null">
+        role_uuid,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="feeling != null">
+        feeling,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="popular != null">
+        popular,
+      </if>
+      <if test="soundFeeling != null">
+        sound_feeling,
+      </if>
+      <if test="mood != null">
+        mood,
+      </if>
+      <if test="totalZan != null">
+        total_zan,
+      </if>
+      <if test="icon2 != null">
+        icon2,
+      </if>
+      <if test="lastChargeTime != null">
+        last_charge_time,
+      </if>
+      <if test="propSet != null">
+        prop_set,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleUuid != null">
+        #{roleUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="feeling != null">
+        #{feeling,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="popular != null">
+        #{popular,jdbcType=INTEGER},
+      </if>
+      <if test="soundFeeling != null">
+        #{soundFeeling,jdbcType=VARCHAR},
+      </if>
+      <if test="mood != null">
+        #{mood,jdbcType=INTEGER},
+      </if>
+      <if test="totalZan != null">
+        #{totalZan,jdbcType=INTEGER},
+      </if>
+      <if test="icon2 != null">
+        #{icon2,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChargeTime != null">
+        #{lastChargeTime,jdbcType=BIGINT},
+      </if>
+      <if test="propSet != null">
+        #{propSet,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.peter.lina.db.mybatis.model.RoleInfo">
+    update role_info_phone_#{tableId}
+    <set>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="feeling != null">
+        feeling = #{feeling,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="popular != null">
+        popular = #{popular,jdbcType=INTEGER},
+      </if>
+      <if test="soundFeeling != null">
+        sound_feeling = #{soundFeeling,jdbcType=VARCHAR},
+      </if>
+      <if test="mood != null">
+        mood = #{mood,jdbcType=INTEGER},
+      </if>
+      <if test="totalZan != null">
+        total_zan = #{totalZan,jdbcType=INTEGER},
+      </if>
+      <if test="icon2 != null">
+        icon2 = #{icon2,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChargeTime != null">
+        last_charge_time = #{lastChargeTime,jdbcType=BIGINT},
+      </if>
+      <if test="propSet != null">
+        prop_set = #{propSet,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where role_uuid = #{roleUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.peter.lina.db.mybatis.model.RoleInfo">
+    update role_info_phone_#{tableId}
+    set birthday = #{birthday,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      feeling = #{feeling,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      popular = #{popular,jdbcType=INTEGER},
+      sound_feeling = #{soundFeeling,jdbcType=VARCHAR},
+      mood = #{mood,jdbcType=INTEGER},
+      total_zan = #{totalZan,jdbcType=INTEGER},
+      icon2 = #{icon2,jdbcType=VARCHAR},
+      last_charge_time = #{lastChargeTime,jdbcType=BIGINT},
+      prop_set = #{propSet,jdbcType=LONGVARCHAR}
+    where role_uuid = #{roleUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.peter.lina.db.mybatis.model.RoleInfo">
+    update role_info_phone_#{tableId}
+    set birthday = #{birthday,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      feeling = #{feeling,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      popular = #{popular,jdbcType=INTEGER},
+      sound_feeling = #{soundFeeling,jdbcType=VARCHAR},
+      mood = #{mood,jdbcType=INTEGER},
+      total_zan = #{totalZan,jdbcType=INTEGER},
+      icon2 = #{icon2,jdbcType=VARCHAR},
+      last_charge_time = #{lastChargeTime,jdbcType=BIGINT}
+    where role_uuid = #{roleUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
