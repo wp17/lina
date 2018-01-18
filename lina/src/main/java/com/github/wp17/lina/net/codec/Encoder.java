@@ -6,7 +6,7 @@ import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.net.connection.LogicSession;
-import com.github.wp17.lina.net.packet.Outbound;
+import com.github.wp17.lina.net.packet.MinaOutbound;
 import com.github.wp17.lina.net.packet.Packet;
 
 public class Encoder extends ProtocolEncoderAdapter {
@@ -14,7 +14,7 @@ public class Encoder extends ProtocolEncoderAdapter {
 	@Override
 	public void encode(IoSession session, Object object, ProtocolEncoderOutput output) throws Exception {
 		
-		Outbound out = new Outbound();
+		MinaOutbound out = new MinaOutbound();
 		IMessage message = (IMessage) object;
 		message.encode(out);
 		

@@ -11,7 +11,7 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 import com.github.wp17.lina.message.msgs.TestMessage;
 import com.github.wp17.lina.net.codec.CodecFactory;
-import com.github.wp17.lina.net.codec.Decoder;
+import com.github.wp17.lina.net.codec.MinaLengthFieldDecoder;
 import com.github.wp17.lina.net.codec.Encoder;
 import com.github.wp17.lina.net.connection.LogicSession;
 
@@ -20,7 +20,7 @@ public class Client {
 	public static void main(String[] args) {
 		NioSocketConnector connector = new NioSocketConnector();
 		
-		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new Decoder(), new Encoder())));
+		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new MinaLengthFieldDecoder(), new Encoder())));
 		
 		connector.setHandler(new IoHandlerAdapter());
 		

@@ -63,7 +63,7 @@ public class MessageFactory {
 		}
 	}
 	
-	IMessage getMessage(short messageId){
+	public IMessage getMessage(short messageId){
 		Class<? extends IMessage> clazz = messages.get(messageId);
 		if (null != clazz) {
 			try {

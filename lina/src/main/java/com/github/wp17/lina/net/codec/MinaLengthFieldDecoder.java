@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.message.MessageModule;
 import com.github.wp17.lina.net.connection.LogicSession;
-import com.github.wp17.lina.net.packet.Inbound;
+import com.github.wp17.lina.net.packet.MinaInbound;
 import com.github.wp17.lina.net.packet.PacketHeader;
 
-public class Decoder extends CumulativeProtocolDecoder {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Decoder.class);
-	private static final AttributeKey HEADER_KEY = new AttributeKey(Decoder.class, "netpacket.header");
+public class MinaLengthFieldDecoder extends CumulativeProtocolDecoder {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MinaLengthFieldDecoder.class);
+	private static final AttributeKey HEADER_KEY = new AttributeKey(MinaLengthFieldDecoder.class, "netpacket.header");
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer ioBuffer, ProtocolDecoderOutput output) throws Exception {
 		
@@ -27,7 +27,7 @@ public class Decoder extends CumulativeProtocolDecoder {
 		PacketHeader header = (PacketHeader) session.getAttribute(HEADER_KEY);
 		if (null == header) {
 			header = new PacketHeader();
-			header.decode(ioBuffer);
+			header.decode(new MinaInbound(ioBuffer));
 			session.setAttribute(HEADER_KEY, header);
 		}
 		
@@ -60,7 +60,7 @@ public class Decoder extends CumulativeProtocolDecoder {
 		ioBuffer.get(bytes);
 		IoBuffer body = IoBuffer.wrap(bytes);
 		
-		message.decode(new Inbound(body));
+		message.decode(new MinaInbound(body));
 		output.write(message);
 		return true;
 	}

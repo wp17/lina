@@ -1,10 +1,8 @@
 package com.github.wp17.lina.net.packet;
 
-import org.apache.mina.core.buffer.IoBuffer;
-
 public class PacketHeader {
 	public static final int HEADER_LEAGTH = 14;
-	
+	public static final int LENGTHFIELD_LENGTH = 4;
 	private short msgID;
 	private int checkSum;
 	private int seq;
@@ -35,17 +33,17 @@ public class PacketHeader {
 		this.bodyLength = bodyLength;
 	}
 	
-	public void encode(IoBuffer buffer){
-		buffer.putShort(msgID);
-		buffer.putInt(checkSum);
-		buffer.putInt(seq);
-		buffer.putInt(bodyLength);
+	public void encode(Outbound outbound){
+		outbound.writeShort(msgID);
+		outbound.writeInt(checkSum);
+		outbound.writeInt(seq);
+		outbound.writeInt(bodyLength);
 	}
 	
-	public void decode(IoBuffer buffer){
-		msgID = buffer.getShort();
-		checkSum = buffer.getInt();
-		seq = buffer.getInt();
-		bodyLength = buffer.getInt();
+	public void decode(Inbound inbound){
+		msgID = inbound.readShort();
+		checkSum = inbound.readInt();
+		seq = inbound.readInt();
+		bodyLength = inbound.readInt();
 	}
 }

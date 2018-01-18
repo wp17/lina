@@ -16,7 +16,7 @@ public class Packet {
 		body.flip();
 		header.setBodyLength(body.limit());
 		
-		header.encode(buffer);
+		header.encode(new MinaOutbound());
 		buffer.put(body);
 		
 		buffer.flip();

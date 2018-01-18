@@ -8,12 +8,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.github.wp17.lina.LinaServer;
 import com.github.wp17.lina.config.data.line.LineData;
 import com.github.wp17.lina.config.data.line.LineDataProvider;
 import com.github.wp17.lina.logic.Role;
 import com.github.wp17.lina.module.IModule;
 import com.github.wp17.lina.module.ModuleInitOrder;
+import com.github.wp17.lina.server.ServerHolder;
 
 public class LineServerModule implements IModule {
 	private LineServerModule(){}
@@ -31,7 +31,7 @@ public class LineServerModule implements IModule {
 		List<LineData> dataList = new ArrayList<LineData>();
 		List<LineData> datas = LineDataProvider.getInstance().getDatas();
 		for (LineData data : datas) {
-			if (LinaServer.getServer().getServerId() == data.getServer_id()) {
+			if (ServerHolder.server().getId() == data.getServer_id()) {
 				dataList.add(data);
 				num.incrementAndGet();
 			}
