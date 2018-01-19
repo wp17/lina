@@ -10,13 +10,14 @@ import com.github.wp17.lina.logic.ObjType;
 import com.github.wp17.lina.logic.Role;
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.net.connection.LogicSession;
+import com.github.wp17.lina.net.connection.MinaSession;
 
-public class LogicHandler extends IoHandlerAdapter {
-	private static final Logger logger = LoggerProvider.getLogger(LogicHandler.class);
+public class MinaLogicHandler extends IoHandlerAdapter {
+	private static final Logger logger = LoggerProvider.getLogger(MinaLogicHandler.class);
 	
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		LogicSession logicSession = LogicSession.getLogicSession(session);
+		LogicSession logicSession = MinaSession.getLogicSession(session);
 		if (null != logicSession) {
 			logicSession.addMsg((IMessage)message);
 		}
@@ -29,7 +30,7 @@ public class LogicHandler extends IoHandlerAdapter {
 	
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
-		LogicSession logicSession = new LogicSession(session);
+		LogicSession logicSession = new MinaSession(session);
 		Role role = new Role(logicSession, ObjType.ROLE);
 		LineServerModule.getInstance().addRole(role);
 		
@@ -43,7 +44,7 @@ public class LogicHandler extends IoHandlerAdapter {
 	
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		LogicSession logicSession = LogicSession.getLogicSession(session);
+		LogicSession logicSession = MinaSession.getLogicSession(session);
 		if (null != logicSession) {
 			Role r = logicSession.getObj();
 			if (null != r) {

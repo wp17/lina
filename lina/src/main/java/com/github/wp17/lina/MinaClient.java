@@ -12,15 +12,15 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import com.github.wp17.lina.message.msgs.TestMessage;
 import com.github.wp17.lina.net.codec.CodecFactory;
 import com.github.wp17.lina.net.codec.MinaLengthFieldDecoder;
-import com.github.wp17.lina.net.codec.Encoder;
-import com.github.wp17.lina.net.connection.LogicSession;
+import com.github.wp17.lina.net.codec.MinaNioEncoder;
+import com.github.wp17.lina.net.connection.MinaSession;
 
-public class Client {
+public class MinaClient {
 
 	public static void main(String[] args) {
 		NioSocketConnector connector = new NioSocketConnector();
 		
-		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new MinaLengthFieldDecoder(), new Encoder())));
+		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new MinaLengthFieldDecoder(), new MinaNioEncoder())));
 		
 		connector.setHandler(new IoHandlerAdapter());
 		
@@ -32,7 +32,7 @@ public class Client {
 			public void operationComplete(ConnectFuture future) {
 				IoSession session = future.getSession();
 				
-				new LogicSession(session);
+				new MinaSession(session);
 				for (int i = 0; i < 20; i++) {
 					TestMessage testMessage = new TestMessage();
 					testMessage.setId(i);

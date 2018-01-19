@@ -13,8 +13,8 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import com.github.wp17.lina.module.ModuleManager;
 import com.github.wp17.lina.net.codec.CodecFactory;
 import com.github.wp17.lina.net.codec.MinaLengthFieldDecoder;
-import com.github.wp17.lina.net.codec.Encoder;
-import com.github.wp17.lina.net.handler.LogicHandler;
+import com.github.wp17.lina.net.codec.MinaNioEncoder;
+import com.github.wp17.lina.net.handler.MinaLogicHandler;
 
 public class MinaNioServer extends NioServer {
 	private NioSocketAcceptor acceptor;
@@ -44,9 +44,9 @@ public class MinaNioServer extends NioServer {
 		
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 300);
 		acceptor.getFilterChain().addLast("readEexcutor", new ExecutorFilter());
-		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new MinaLengthFieldDecoder(), new Encoder())));
+		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new CodecFactory(new MinaLengthFieldDecoder(), new MinaNioEncoder())));
 		acceptor.getFilterChain().addLast("writeExecutor", new ExecutorFilter(IoEventType.WRITE));
-		acceptor.setHandler(new LogicHandler());
+		acceptor.setHandler(new MinaLogicHandler());
 		try {
 			acceptor.bind(getAddresses());
 		} catch (IOException e) {

@@ -1,8 +1,6 @@
 package com.github.wp17.lina.net.packet;
 
 public class PacketHeader {
-	public static final int HEADER_LEAGTH = 14;
-	public static final int LENGTHFIELD_LENGTH = 4;
 	private short msgID;
 	private int checkSum;
 	private int seq;

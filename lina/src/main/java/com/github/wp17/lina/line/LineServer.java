@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 import com.github.wp17.lina.config.data.line.LineData;
 import com.github.wp17.lina.executor.ExecutorModule;
@@ -19,8 +20,7 @@ public class LineServer {
 	private final AtomicBoolean running = new AtomicBoolean();
 	private final AtomicBoolean closed = new AtomicBoolean();
 	private final Map<Long, Role> roles = new ConcurrentHashMap<Long, Role>();
-	private final FrameUpdateService frameUpdateService = new FrameUpdateService();
-	
+	private final AtomicReference<Processor> processorRef = new AtomicReference<Processor>();
 	public LineServer(LineData lineData, CountDownLatch countDownLatch){
 		this.lineData = lineData;
 		this.countDownLatch = countDownLatch;
@@ -28,7 +28,9 @@ public class LineServer {
 	
 	public void startup(){
 		running.compareAndSet(false, true);
-		ExecutorModule.getInstance().executeFUService(frameUpdateService);
+		Processor processor = new Processor();
+		processorRef.compareAndSet(null, processor);
+		ExecutorModule.getInstance().executeFUService(processor);
 	}
 	
 	public void close(){
@@ -57,7 +59,7 @@ public class LineServer {
 		return roles.get(roleId);
 	}
 	
-	private class FrameUpdateService implements Runnable{
+	private class Processor implements Runnable{
 		@Override
 		public void run() {
 			countDownLatch.countDown();

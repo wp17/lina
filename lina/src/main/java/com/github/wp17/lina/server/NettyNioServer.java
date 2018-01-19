@@ -16,7 +16,9 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import java.net.SocketAddress;
 import java.util.List;
 
-import com.github.wp17.lina.net.packet.PacketHeader;
+import com.github.wp17.lina.net.codec.NettyByte2MsgDecoder;
+import com.github.wp17.lina.net.handler.NettyInboundHandler;
+import com.github.wp17.lina.net.packet.Packet;
 
 public class NettyNioServer extends NioServer{
 	private ServerBootstrap bootstrap = new ServerBootstrap();
@@ -43,7 +45,10 @@ public class NettyNioServer extends NioServer{
 
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
-				ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, PacketHeader.HEADER_LEAGTH-PacketHeader.LENGTHFIELD_LENGTH, PacketHeader.LENGTHFIELD_LENGTH));
+				ch.pipeline()
+				.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, Packet.HEADER_LEAGTH-Packet.LENGTHFIELD_LENGTH, Packet.LENGTHFIELD_LENGTH))
+				.addLast(new NettyByte2MsgDecoder())
+				.addLast(new NettyInboundHandler());
 			}
 		});
 		

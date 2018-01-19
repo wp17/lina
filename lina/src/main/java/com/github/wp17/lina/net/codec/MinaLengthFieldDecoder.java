@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.message.MessageModule;
 import com.github.wp17.lina.net.connection.LogicSession;
+import com.github.wp17.lina.net.connection.MinaSession;
 import com.github.wp17.lina.net.packet.MinaInbound;
+import com.github.wp17.lina.net.packet.Packet;
 import com.github.wp17.lina.net.packet.PacketHeader;
 
 public class MinaLengthFieldDecoder extends CumulativeProtocolDecoder {
@@ -20,7 +22,7 @@ public class MinaLengthFieldDecoder extends CumulativeProtocolDecoder {
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer ioBuffer, ProtocolDecoderOutput output) throws Exception {
 		
-		if (ioBuffer.remaining() < PacketHeader.HEADER_LEAGTH) {
+		if (ioBuffer.remaining() < Packet.HEADER_LEAGTH) {
 			return false;
 		}
 		
@@ -45,9 +47,9 @@ public class MinaLengthFieldDecoder extends CumulativeProtocolDecoder {
 			return false;
 		}
 		
-		LogicSession player = LogicSession.getLogicSession(session);
+		LogicSession player = MinaSession.getLogicSession(session);
 		if (null == player) {
-			player = new LogicSession(session);
+			player = new MinaSession(session);
 		}
 		
 		int except = player.getNextIngoingSeq();

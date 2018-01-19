@@ -6,10 +6,11 @@ import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.net.connection.LogicSession;
+import com.github.wp17.lina.net.connection.MinaSession;
 import com.github.wp17.lina.net.packet.MinaOutbound;
-import com.github.wp17.lina.net.packet.Packet;
+import com.github.wp17.lina.net.packet.MinaPacket;
 
-public class Encoder extends ProtocolEncoderAdapter {
+public class MinaNioEncoder extends ProtocolEncoderAdapter {
 
 	@Override
 	public void encode(IoSession session, Object object, ProtocolEncoderOutput output) throws Exception {
@@ -18,9 +19,11 @@ public class Encoder extends ProtocolEncoderAdapter {
 		IMessage message = (IMessage) object;
 		message.encode(out);
 		
-		Packet packet = new Packet(out.getBuffer());
-		LogicSession player = LogicSession.getLogicSession(session);
+		MinaPacket packet = new MinaPacket(out.getBuffer());
+		
+		LogicSession player = MinaSession.getLogicSession(session);
 		packet.setSeq(player.getNextOutgoingSeq());
+		
 		packet.setMsgID(message.getMsgID());
 		packet.setCheckSum(-1);
 		

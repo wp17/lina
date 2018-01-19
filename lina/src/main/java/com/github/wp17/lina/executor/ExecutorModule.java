@@ -30,7 +30,9 @@ public class ExecutorModule implements IModule {
 	}
 	
 	public void executeFUService(Runnable runnable){
-		lineExecutor.execute(runnable);
+		if (null != runnable) {
+			lineExecutor.execute(runnable);
+		}
 	}
 
 	public static void main(String[] args) {

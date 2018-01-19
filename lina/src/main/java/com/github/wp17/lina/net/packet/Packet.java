@@ -1,42 +1,13 @@
 package com.github.wp17.lina.net.packet;
 
-import org.apache.mina.core.buffer.IoBuffer;
-
-public class Packet {
-	private PacketHeader header = new PacketHeader();
-	private IoBuffer body;
+public interface Packet <T>{
+	/**消息头总长度*/
+	public static final int HEADER_LEAGTH = 14;
+	/**长度字段的长度*/
+	public static final int LENGTHFIELD_LENGTH = 4;
+	/**长度字段的偏移量*/
+	public static final int LENGTHFIELD_OFFSET = 10;
 	
-	public Packet(IoBuffer body){
-		this.body = body;
-	}
-	
-	public IoBuffer encode(){
-		IoBuffer buffer = IoBuffer.allocate(20480).setAutoExpand(true);
-		
-		body.flip();
-		header.setBodyLength(body.limit());
-		
-		header.encode(new MinaOutbound());
-		buffer.put(body);
-		
-		buffer.flip();
-		
-		return buffer;
-	}
-	
-	public void decode(){
-		
-	}
-
-	public void setSeq(int seq){
-		header.setSeq(seq);
-	}
-	
-	public void setMsgID(short msgID){
-		header.setMsgID(msgID);
-	}
-	
-	public void setCheckSum(int checksum){
-		header.setCheckSum(checksum);
-	}
+	T encode();
+	void decode();
 }
