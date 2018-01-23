@@ -11,9 +11,9 @@ import org.apache.mina.filter.executor.ExecutorFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 import com.github.wp17.lina.module.ModuleManager;
-import com.github.wp17.lina.net.codec.CodecFactory;
-import com.github.wp17.lina.net.codec.MinaLengthFieldDecoder;
-import com.github.wp17.lina.net.codec.MinaNioEncoder;
+import com.github.wp17.lina.net.codec.mina.CodecFactory;
+import com.github.wp17.lina.net.codec.mina.MinaLengthFieldDecoder;
+import com.github.wp17.lina.net.codec.mina.MinaNioEncoder;
 import com.github.wp17.lina.net.handler.MinaLogicHandler;
 
 public class MinaNioServer extends NioServer {

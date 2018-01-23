@@ -9,15 +9,16 @@ import com.github.wp17.lina.net.future.LogicFuture;
 
 public class NettySession extends LogicSession {
 	private static final AttributeKey<Object> SESSION_OBJ_KEY = AttributeKey.valueOf(NettySession.class, "session_obj_key");
-	private static final AttributeKey<Object> SESSION_CONNECTION = AttributeKey.valueOf(NettySession.class, "session_connection");
+	private static final AttributeKey<LogicSession> SESSION_CONNECTION = AttributeKey.valueOf(NettySession.class, "session_connection");
 	private Channel channel;
+	
 	public NettySession(Channel channel){
 		this.channel = channel;
 	}
 	
 	public static LogicSession getLogicSession(Channel channel){
-		Attribute<Object> attribute = channel.attr(SESSION_CONNECTION);
-		return (LogicSession) attribute.get();
+		Attribute<LogicSession> attribute = channel.attr(SESSION_CONNECTION);
+		return attribute.get();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -34,8 +35,8 @@ public class NettySession extends LogicSession {
 	}
 
 	@Override
-	public LogicFuture<Object> sendMsg(IMessage message) {
-		channel.writeAndFlush(message);
+	public LogicFuture<Object> sendMsg(IMessage msg) {
+		channel.writeAndFlush(msg);
 		return null;
 	}
 

@@ -55,7 +55,7 @@ public class NettyInBound implements Inbound {
 
 	@Override
 	public String readString() {
-		short length = byteBuf.readShort();
+		int length = byteBuf.readInt();
 		byte[] bytes = new byte[length];
 		byteBuf.readBytes(bytes);
 		

@@ -1,8 +1,8 @@
 package com.github.wp17.lina.net.packet;
 
-import java.io.UnsupportedEncodingException;
-
 import org.apache.mina.core.buffer.IoBuffer;
+
+import com.github.wp17.lina.log.LoggerProvider;
 
 public class MinaOutbound implements Outbound {
 	private IoBuffer buffer;
@@ -62,16 +62,25 @@ public class MinaOutbound implements Outbound {
 	@Override
 	public void writeString(String value){
 		if (null == value) {
-			value = "";
+			buffer.putInt(0);
+			return;
 		}
+		
 		byte[] bytes = null;
 		try {
 			bytes = value.getBytes("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			writeShort((short)0);
-			e.printStackTrace();
+		} catch (Exception e) {
+			buffer.putInt(0);
+			LoggerProvider.addExceptionLog(e);
+			return;
 		}
-		writeShort((short) bytes.length);
-		buffer.put(bytes);
+		
+		if (null != bytes) {
+			buffer.putInt(bytes.length);
+			buffer.put(bytes);
+		}else {
+			buffer.putInt(0);
+		}
+		
 	}
 }

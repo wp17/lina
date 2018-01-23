@@ -1,4 +1,4 @@
-package com.github.wp17.lina.net.codec;
+package com.github.wp17.lina.net.codec.mina;
 
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.AttributeKey;

@@ -11,13 +11,15 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.util.concurrent.GenericFutureListener;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.net.SocketAddress;
 import java.util.List;
 
-import com.github.wp17.lina.net.codec.NettyByte2MsgDecoder;
-import com.github.wp17.lina.net.handler.NettyInboundHandler;
+import com.github.wp17.lina.net.codec.netty.NettyByte2MsgDecoder;
+import com.github.wp17.lina.net.codec.netty.NettyMsg2ByteEncoder;
+import com.github.wp17.lina.net.handler.NettyInboundLogicHandler;
 import com.github.wp17.lina.net.packet.Packet;
 
 public class NettyNioServer extends NioServer{
@@ -29,9 +31,14 @@ public class NettyNioServer extends NioServer{
 
 	@Override
 	public void shutdown() {
-		bootstrap.config().group().shutdownGracefully();
-		bootstrap.config().childGroup().shutdownGracefully();
-		allChannels.close().awaitUninterruptibly();
+		try {
+			allChannels.close().sync();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}finally{
+			bootstrap.config().group().shutdownGracefully();
+			bootstrap.config().childGroup().shutdownGracefully();
+		}
  	}
 
 	@Override
@@ -39,29 +46,35 @@ public class NettyNioServer extends NioServer{
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		EventLoopGroup workerGroop = new NioEventLoopGroup();
 		
-		bootstrap.group(bossGroup, workerGroop).channel(NioServerSocketChannel.class);
-		
-		bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
-
+		bootstrap
+		.group(bossGroup, workerGroop)
+		.channel(NioServerSocketChannel.class)
+		.childHandler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
 				ch.pipeline()
 				.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, Packet.HEADER_LEAGTH-Packet.LENGTHFIELD_LENGTH, Packet.LENGTHFIELD_LENGTH))
 				.addLast(new NettyByte2MsgDecoder())
-				.addLast(new NettyInboundHandler());
+				.addLast(new NettyInboundLogicHandler())
+				.addLast(new NettyMsg2ByteEncoder());
 			}
 		});
 		
-		try {
-			for (SocketAddress socketAddress : getAddresses()) {
-				ChannelFuture future = bootstrap.bind(socketAddress).sync();
-				future.await();
-				if(future.isSuccess()){
-					allChannels.add(future.channel());
+		for (SocketAddress socketAddress : getAddresses()) {
+			ChannelFuture future = bootstrap.clone().bind(socketAddress);
+			future.addListener(new GenericFutureListener<ChannelFuture>() {
+				@Override
+				public void operationComplete(ChannelFuture future)throws Exception {
+					if(future.isSuccess()){
+						allChannels.add(future.channel());
+					}else {
+						//TODO LOG
+						if (future.cause() != null) {
+							
+						}
+					}
 				}
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			});
 		}
 	}
 

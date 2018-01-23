@@ -47,17 +47,26 @@ public class MinaInbound implements Inbound{
 	}
 	
 	public String readString(){
-		short length = buffer.getShort();
+		int length = buffer.getInt();
 		byte[] bytes = new byte[length];
 		buffer.get(bytes);
 		
 		try {
 			String string = new String(bytes, "UTF-8");
 			return string;
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			LoggerProvider.addExceptionLog(e);
 		}
 		
 		return "";
+	}
+	
+	public static void main(String[] args) {
+		try {
+			System.out.println("**"+new String(new byte[0], "UTF-8")+"**");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

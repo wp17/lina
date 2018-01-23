@@ -1,4 +1,4 @@
-package com.github.wp17.lina.net.codec;
+package com.github.wp17.lina.net.codec.netty;
 
 import java.util.List;
 

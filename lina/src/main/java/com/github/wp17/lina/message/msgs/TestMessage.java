@@ -10,7 +10,7 @@ public class TestMessage implements IMessage {
 
 	private long id;
 	private String name;
-	private byte age;
+	private int age;
 	
 	public long getId() {
 		return id;
@@ -28,17 +28,17 @@ public class TestMessage implements IMessage {
 		this.name = name;
 	}
 
-	public byte getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(byte age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
 	@Override
 	public void encode(Outbound s) {
-		s.writeByte(age);
+		s.writeInt(age);
 		s.writeString(name);
 		s.writeLong(id);
 
@@ -46,7 +46,7 @@ public class TestMessage implements IMessage {
 
 	@Override
 	public void decode(Inbound s) {
-		age = s.readByte();
+		age = s.readInt();
 		name = s.readString();
 		id = s.readLong();
 

@@ -1,4 +1,4 @@
-package com.github.wp17.lina.net.codec;
+package com.github.wp17.lina.net.codec.mina;
 
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFactory;

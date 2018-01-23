@@ -10,9 +10,9 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 import com.github.wp17.lina.message.msgs.TestMessage;
-import com.github.wp17.lina.net.codec.CodecFactory;
-import com.github.wp17.lina.net.codec.MinaLengthFieldDecoder;
-import com.github.wp17.lina.net.codec.MinaNioEncoder;
+import com.github.wp17.lina.net.codec.mina.CodecFactory;
+import com.github.wp17.lina.net.codec.mina.MinaLengthFieldDecoder;
+import com.github.wp17.lina.net.codec.mina.MinaNioEncoder;
 import com.github.wp17.lina.net.connection.MinaSession;
 
 public class MinaClient {
