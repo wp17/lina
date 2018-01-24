@@ -43,6 +43,10 @@ public class NettyInboundLogicHandler extends SimpleChannelInboundHandler<IMessa
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, IMessage msg) throws Exception {
 		LogicSession session = NettySession.getLogicSession(ctx.channel());
-		session.addMsg(msg);
+		if (null != session) {
+			session.addMsg(msg);
+		}else {
+			LoggerProvider.addExceptionLog(new NullPointerException("channel associated session is null"));
+		}
 	}
 }

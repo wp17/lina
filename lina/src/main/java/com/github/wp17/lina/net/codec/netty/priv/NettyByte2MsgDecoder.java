@@ -1,4 +1,4 @@
-package com.github.wp17.lina.net.codec.netty;
+package com.github.wp17.lina.net.codec.netty.priv;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
 public class NettyByte2MsgDecoder extends ByteToMessageDecoder {
-
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
 		ByteBuf headerBuf = in.slice(0, Packet.HEADER_LEAGTH);
@@ -24,7 +23,6 @@ public class NettyByte2MsgDecoder extends ByteToMessageDecoder {
 		ByteBuf bodyBuf = in.slice(Packet.HEADER_LEAGTH, header.getBodyLength());
 		
 		IMessage message = MessageFactory.getFactory().getMessage(header.getMsgID());
-		
 		message.decode(new NettyInBound(bodyBuf));
 		out.add(message);
 	}

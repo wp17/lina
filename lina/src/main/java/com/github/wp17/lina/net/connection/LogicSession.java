@@ -7,8 +7,8 @@ import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.net.future.LogicFuture;
 
 public abstract class LogicSession {
-	private int nextOutgoingSeq = 0;
-	private int nextIngoingSeq = 0;
+	private int outgoingSeq = 0;
+	private int incomingSeq = 0;
 	
 	private final Queue<IMessage> messages = new ConcurrentLinkedQueue<IMessage>();
 	
@@ -18,11 +18,11 @@ public abstract class LogicSession {
 	public abstract LogicFuture<Object> sendMsg(IMessage message);
 	
 	public int getNextOutgoingSeq() {
-		return ++nextOutgoingSeq;
+		return ++outgoingSeq;
 	}
 	
-	public int getNextIngoingSeq() {
-		return ++nextIngoingSeq;
+	public int getNextIncomingSeq() {
+		return ++incomingSeq;
 	}
 	
 	public void addMsg(IMessage message){

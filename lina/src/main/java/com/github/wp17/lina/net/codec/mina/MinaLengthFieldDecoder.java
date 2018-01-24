@@ -52,7 +52,7 @@ public class MinaLengthFieldDecoder extends CumulativeProtocolDecoder {
 			player = new MinaSession(session);
 		}
 		
-		int except = player.getNextIngoingSeq();
+		int except = player.getNextIncomingSeq();
 		if (header.getSeq() != except) {
 			LOGGER.error("message disorder, id: "+msgId+" except is "+except+", actual is "+header.getSeq());
 			return false;

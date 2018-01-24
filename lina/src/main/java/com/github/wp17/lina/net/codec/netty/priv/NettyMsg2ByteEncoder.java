@@ -1,4 +1,4 @@
-package com.github.wp17.lina.net.codec.netty;
+package com.github.wp17.lina.net.codec.netty.priv;
 
 import com.github.wp17.lina.message.IMessage;
 import com.github.wp17.lina.net.connection.LogicSession;

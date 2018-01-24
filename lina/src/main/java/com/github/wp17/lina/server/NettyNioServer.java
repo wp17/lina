@@ -2,25 +2,19 @@ package com.github.wp17.lina.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.util.concurrent.GenericFutureListener;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.net.SocketAddress;
 import java.util.List;
 
-import com.github.wp17.lina.net.codec.netty.NettyByte2MsgDecoder;
-import com.github.wp17.lina.net.codec.netty.NettyMsg2ByteEncoder;
-import com.github.wp17.lina.net.handler.NettyInboundLogicHandler;
-import com.github.wp17.lina.net.packet.Packet;
+import com.github.wp17.lina.net.codec.netty.priv.PrivateChannelInitializer;
 
 public class NettyNioServer extends NioServer{
 	private ServerBootstrap bootstrap = new ServerBootstrap();
@@ -49,16 +43,7 @@ public class NettyNioServer extends NioServer{
 		bootstrap
 		.group(bossGroup, workerGroop)
 		.channel(NioServerSocketChannel.class)
-		.childHandler(new ChannelInitializer<SocketChannel>() {
-			@Override
-			protected void initChannel(SocketChannel ch) throws Exception {
-				ch.pipeline()
-				.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, Packet.HEADER_LEAGTH-Packet.LENGTHFIELD_LENGTH, Packet.LENGTHFIELD_LENGTH))
-				.addLast(new NettyByte2MsgDecoder())
-				.addLast(new NettyInboundLogicHandler())
-				.addLast(new NettyMsg2ByteEncoder());
-			}
-		});
+		.childHandler(new PrivateChannelInitializer());
 		
 		for (SocketAddress socketAddress : getAddresses()) {
 			ChannelFuture future = bootstrap.clone().bind(socketAddress);
