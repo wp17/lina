@@ -22,7 +22,8 @@ public class NettyHeartbeatHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
 		if (evt instanceof IdleStateEvent) {
-			 ctx.writeAndFlush(HEARTBEAT.duplicate());
+			/**在 Netty 发送消息可以采用两种方式：直接写消息给 Channel 或者写入 ChannelHandlerContext 对象。这两者主要的区别是， 前一种方法会导致消息从 ChannelPipeline的尾部开始，而后者导致消息从 ChannelPipeline 下一个处理器开始。*/
+			ctx.writeAndFlush(HEARTBEAT.duplicate());
 		}else {
 			super.userEventTriggered(ctx, evt);
 		}

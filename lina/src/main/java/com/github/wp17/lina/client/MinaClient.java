@@ -1,4 +1,4 @@
-package com.github.wp17.lina;
+package com.github.wp17.lina.client;
 
 import java.net.InetSocketAddress;
 
