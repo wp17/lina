@@ -1,12 +1,16 @@
 package com.github.wp17.lina.net.codec.netty.priv;
 
-import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.security.KeyStore;
+import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
+import javax.net.ssl.TrustManagerFactory;
 
 import com.github.wp17.lina.net.handler.NettyHeartbeatHandler;
 import com.github.wp17.lina.net.handler.NettyInboundLogicHandler;
@@ -23,7 +27,7 @@ public class PrivateChannelInitializer extends ChannelInitializer<SocketChannel>
 
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
-		SslHandler ssslHandler = new SslHandler(createSslEngine("server_ks", "110119120"), false);
+		SslHandler ssslHandler = new SslHandler(createSslEngine(), false);
 		
 		ch.pipeline()
 		.addLast(new IdleStateHandler(10, 10, 5, TimeUnit.SECONDS))
@@ -37,22 +41,28 @@ public class PrivateChannelInitializer extends ChannelInitializer<SocketChannel>
 		
 	}
 	
-	/**参考http://blog.csdn.net/ENERGIE1314/article/details/54581411*/
-	private SSLEngine createSslEngine(String ketStorePath, String keyStorePwd) throws Exception {
-		System.setProperty("javax.net.ssl.trustStore", ketStorePath);  
-        SSLContext context = SSLContext.getInstance("TLS");  
+	/**参考http://blog.csdn.net/ENERGIE1314/article/details/54581411
+	 * http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html
+	 * http://www.williamlong.info/archives/3461.html
+	 * */
+	private SSLEngine createSslEngine() throws Exception {
+		System.setProperty("javax.net.ssl.trustStore", "server_ks");  
 
         KeyStore ks = KeyStore.getInstance("jceks");
-        ks.load(new FileInputStream(ketStorePath), null); 
-        
-        KeyManagerFactory kf = KeyManagerFactory.getInstance("SunX509");  
-        kf.init(ks, keyStorePwd.toCharArray());  
+        ks.load(this.getClass().getResourceAsStream("server_ks"), new char[]{'s','e','r','v','e','r'}); 
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+        kmf.init(ks, new char[]{'1','1','0','1','1','9','1','2','0'});
 
-        context.init(kf.getKeyManagers(), null, null);
-		return context.createSSLEngine();
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(System.getProperty("user.dir"));
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+        KeyStore keyStore = KeyStore.getInstance("jceks");
+        keyStore.load(this.getClass().getResourceAsStream("server_cer"), new char[]{'c','l','i','e','n','t'});
+        tmf.init(keyStore);
+        
+        SSLContext context = SSLContext.getInstance("TLS");
+        context.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
+        SSLEngine sslEngine = context.createSSLEngine();
+        sslEngine.setNeedClientAuth(true);
+        
+		return sslEngine;
 	}
 }
