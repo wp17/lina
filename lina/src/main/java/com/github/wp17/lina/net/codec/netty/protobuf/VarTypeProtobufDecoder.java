@@ -7,11 +7,11 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.List;
 
 import com.github.wp17.lina.log.LoggerProvider;
-import com.github.wp17.lina.message.proto.AddressBookProtos.AddressBook;
-import com.github.wp17.lina.message.proto.AddressBookProtos.Person;
 import com.github.wp17.lina.net.connection.LogicSession;
 import com.github.wp17.lina.net.connection.NettySession;
 import com.github.wp17.lina.net.packet.Packet;
+import com.github.wp17.lina.protomessage.IProtobufMsgProcessor;
+import com.github.wp17.lina.protomessage.ProtoMessageModule;
 import com.google.protobuf.MessageLite;
 
 public class VarTypeProtobufDecoder extends ByteToMessageDecoder{
@@ -73,19 +73,15 @@ public class VarTypeProtobufDecoder extends ByteToMessageDecoder{
                 offset = 0;
             }
             
-            MessageLite result = decodeBody(msgId, data, offset, readableLen);
-            out.add(result);
+            processor(session, msgId, data, offset, readableLen);
+            
+            out.add(in);
         }
     }
 
-    public MessageLite decodeBody(int msgId, byte[] data, int offset, int length) throws Exception {
-        if (msgId == 0x00) {
-        	return AddressBook.getDefaultInstance().getParserForType().parseFrom(data, offset, length);
-
-        } else if (msgId == 0x01) {
-           return Person.getDefaultInstance().getParserForType().parseFrom(data, offset, length);
-        }
-
-        return null;
+    private void processor(LogicSession session, int msgId, byte[] data, int offset, int length) throws Exception {
+    	IProtobufMsgProcessor processor = ProtoMessageModule.getInstance().getProcessor(msgId);
+    	MessageLite messageLite = processor.getMessageLite(data, offset, length);
+        processor.processor(session, messageLite);
     }
 }

@@ -7,12 +7,12 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.wp17.lina.message.proto.AddressBookProtos;
-import com.github.wp17.lina.message.proto.AddressBookProtos.AddressBook;
-import com.github.wp17.lina.message.proto.AddressBookProtos.AddressBook.Builder;
-import com.github.wp17.lina.message.proto.AddressBookProtos.Person.PhoneNumber;
-import com.github.wp17.lina.message.proto.AddressBookProtos.Person;
-import com.github.wp17.lina.message.proto.AddressBookProtos.Person.PhoneType;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos.AddressBook;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos.Person;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos.AddressBook.Builder;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos.Person.PhoneNumber;
+import com.github.wp17.lina.protomessage.msgs.AddressBookProtos.Person.PhoneType;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 public class ProtoBufTest {
@@ -25,12 +25,12 @@ public class ProtoBufTest {
 	}
 	
 	public AddressBook createAddressBook(){
-		com.github.wp17.lina.message.proto.AddressBookProtos.Person.PhoneNumber.Builder phoneBuilder = PhoneNumber.newBuilder();
+		com.github.wp17.lina.protomessage.msgs.AddressBookProtos.Person.PhoneNumber.Builder phoneBuilder = PhoneNumber.newBuilder();
 		phoneBuilder.setNumber("18311283060");
 		phoneBuilder.setType(PhoneType.MOBILE);
 		PhoneNumber phoneNumber = phoneBuilder.build();
 		
-		com.github.wp17.lina.message.proto.AddressBookProtos.Person.Builder personBuilder = Person.newBuilder();
+		com.github.wp17.lina.protomessage.msgs.AddressBookProtos.Person.Builder personBuilder = Person.newBuilder();
 		personBuilder.setId(1);
 		personBuilder.setEmail("wangpg126@126.com");
 		personBuilder.setName("peter");

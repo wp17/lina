@@ -1,8 +1,5 @@
 package com.github.wp17.lina.net.codec.netty.priv;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;

@@ -1,9 +1,8 @@
 package com.github.wp17.lina.net.codec.netty.protobuf;
 
-import com.github.wp17.lina.message.proto.AddressBookProtos.AddressBook;
-import com.github.wp17.lina.message.proto.AddressBookProtos.Person;
 import com.github.wp17.lina.net.connection.LogicSession;
 import com.github.wp17.lina.net.connection.NettySession;
+import com.github.wp17.lina.protomessage.ProtoMessageModule;
 import com.google.protobuf.MessageLite;
 
 import io.netty.buffer.ByteBuf;
@@ -31,12 +30,7 @@ public class VarTypeProtobufEncoder extends MessageToByteEncoder<MessageLite> {
 	}
 	
 	private short getMsgId(MessageLite msg){
-		short msgId = 0xff;
-        if (msg instanceof AddressBook) {// TODO test
-            msgId = 0x00;
-        } else if (msg instanceof Person) {
-            msgId = 0x01;
-        }
+		short msgId = ProtoMessageModule.getInstance().getMessageID(msg.getClass());
         return msgId;
 	}
 	

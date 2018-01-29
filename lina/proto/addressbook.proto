@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package netty;
 
-option java_package = "com.github.wp17.lina.message.proto";
+option java_package = "com.github.wp17.lina.protomessage.msgs";
 option java_outer_classname = "AddressBookProtos";
 
 message Person {
