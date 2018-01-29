@@ -1,9 +1,8 @@
 package com.github.wp17.lina.net.codec.netty.protobuf;
 
-import java.nio.ByteBuffer;
-
 import com.github.wp17.lina.net.packet.Packet;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -18,9 +17,9 @@ public class ProtobufChannelInitializer extends ChannelInitializer<SocketChannel
 		.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, Packet.LENGTHFIELD_OFFSET, Packet.LENGTHFIELD_LENGTH))
 		.addLast(new VarTypeProtobufDecoder())
 		.addLast(new VarTypeProtobufEncoder())
-		.addLast(new SimpleChannelInboundHandler<ByteBuffer>() {
+		.addLast(new SimpleChannelInboundHandler<ByteBuf>() {
 			@Override
-			protected void channelRead0(ChannelHandlerContext ctx, ByteBuffer msg) throws Exception {
+			protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
 				
 			}
 		});

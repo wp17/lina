@@ -6,7 +6,10 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
+import com.github.wp17.lina.line.LineServerModule;
 import com.github.wp17.lina.log.LoggerProvider;
+import com.github.wp17.lina.logic.ObjType;
+import com.github.wp17.lina.logic.Role;
 import com.github.wp17.lina.net.connection.LogicSession;
 import com.github.wp17.lina.net.connection.NettySession;
 import com.github.wp17.lina.net.packet.Packet;
@@ -15,6 +18,15 @@ import com.github.wp17.lina.protomessage.ProtoMessageModule;
 import com.google.protobuf.MessageLite;
 
 public class VarTypeProtobufDecoder extends ByteToMessageDecoder{
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		NettySession session = new NettySession(ctx.channel());
+		Role role = new Role(session, ObjType.ROLE);
+		LineServerModule.getInstance().addRole(role);
+
+		super.channelActive(ctx);
+	}
+	
 	@Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         while (in.readableBytes() > Packet.HEADER_LEAGTH) {
