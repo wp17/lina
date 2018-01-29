@@ -62,6 +62,11 @@
 	    <appender-ref ref="asyncInfoAppender"/>
 	</logger>
 	
+	<logger name="io.netty">
+	    <level value="info" />
+	    <appender-ref ref="asyncInfoAppender"/>
+	</logger>
+	
 	<root>
 	    <level value="debug" />
 		<appender-ref ref="console" />

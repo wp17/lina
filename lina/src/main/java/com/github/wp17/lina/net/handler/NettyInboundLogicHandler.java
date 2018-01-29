@@ -49,4 +49,10 @@ public class NettyInboundLogicHandler extends SimpleChannelInboundHandler<IMessa
 			LoggerProvider.addExceptionLog(new NullPointerException("channel associated session is null"));
 		}
 	}
+	
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+		LoggerProvider.addExceptionLog(cause);
+		ctx.close();
+	}
 }

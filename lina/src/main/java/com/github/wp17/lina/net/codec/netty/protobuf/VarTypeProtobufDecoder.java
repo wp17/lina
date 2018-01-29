@@ -3,6 +3,7 @@ package com.github.wp17.lina.net.codec.netty.protobuf;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.util.ReferenceCountUtil;
 
 import java.util.List;
 
@@ -28,8 +29,18 @@ public class VarTypeProtobufDecoder extends ByteToMessageDecoder{
 	}
 	
 	@Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        while (in.readableBytes() > Packet.HEADER_LEAGTH) {
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
+        try{
+        	doDecode(ctx, in, out);
+        } catch (Exception e) {
+        	LoggerProvider.addExceptionLog(e);
+		}finally{
+        	ReferenceCountUtil.release(in);
+        }
+    }
+	
+	private void doDecode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception{
+		while (in.readableBytes() > Packet.HEADER_LEAGTH) {
             in.markReaderIndex();
 
             int msgId = in.readShortLE();
@@ -89,7 +100,7 @@ public class VarTypeProtobufDecoder extends ByteToMessageDecoder{
             
             out.add(in);
         }
-    }
+	}
 
     private void processor(LogicSession session, int msgId, byte[] data, int offset, int length) throws Exception {
     	IProtobufMsgProcessor processor = ProtoMessageModule.getInstance().getProcessor(msgId);
