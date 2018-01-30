@@ -1,14 +1,13 @@
-syntax = "proto2";
-
+syntax = "proto3";
 package netty;
-
+/*https://solicomo.com/network-dev/protobuf-proto3-vs-proto2.html*/
 option java_package = "com.github.wp17.lina.protomessage.msgs";
 option java_outer_classname = "AddressBookProtos";
 
 message Person {
-  required string name = 1;
-  required int32 id = 2;
-  optional string email = 3;
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
 
   enum PhoneType {
     MOBILE = 0;
@@ -17,8 +16,8 @@ message Person {
   }
 
   message PhoneNumber {
-    required string number = 1;
-    optional PhoneType type = 2 [default = HOME];
+    string number = 1;
+    PhoneType type = 2;
   }
 
   repeated PhoneNumber phones = 4;
