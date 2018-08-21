@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.github.wp17.lina</groupId>
+    <artifactId>all</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>lina-server</artifactId>
+  
+  <name>lina-server</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+	</dependency>
+  	<dependency>
+	    <groupId>com.zaxxer</groupId>
+	    <artifactId>HikariCP</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>commons-logging</groupId>
+	    <artifactId>commons-logging</artifactId>
+	</dependency>
+  
+   <dependency>
+	  	<groupId>com.github.wp17.lina</groupId>
+  	  	<artifactId>lina-common</artifactId>
+  		<version>1.0-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+	  	<groupId>com.github.wp17.lina</groupId>
+  	  	<artifactId>lina-db</artifactId>
+  		<version>1.0-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+	  	<groupId>com.github.wp17.lina</groupId>
+  	  	<artifactId>lina-config</artifactId>
+  		<version>1.0-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.google.protobuf</groupId>
+	    <artifactId>protobuf-java</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>io.netty</groupId>
+	    <artifactId>netty-all</artifactId>
+	</dependency>
+	<dependency>  
+        <groupId>org.apache.mina</groupId>  
+        <artifactId>mina-core</artifactId>  
+    </dependency>
+    
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+  	</dependency>
+  	<dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz-jobs</artifactId>
+  	</dependency>
+  	<dependency>  
+        <groupId>dom4j</groupId>  
+        <artifactId>dom4j</artifactId>  
+    </dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<scope>runtime</scope>
+	</dependency>
+	
+	<dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-api</artifactId>  
+    </dependency>
+    
+    <dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-log4j12</artifactId>  
+    </dependency>
+    
+    <dependency>  
+        <groupId>log4j</groupId>  
+        <artifactId>log4j</artifactId>  
+        <exclusions>
+		    <exclusion>
+		       <groupId>com.sun.jmx</groupId>
+		       <artifactId>jmxri</artifactId>
+		    </exclusion>
+		    <exclusion>
+		       <groupId>com.sun.jdmk</groupId>
+		       <artifactId>jmxtools</artifactId>
+		    </exclusion>
+		    <exclusion>
+		        <groupId>javax.jms</groupId>
+		        <artifactId>jms</artifactId>
+		 	</exclusion>
+		</exclusions>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-configuration-processor</artifactId>
+    	<optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <build>
+	  	<plugins>
+	  		<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+	  	</plugins>
+  </build>
+</project>
