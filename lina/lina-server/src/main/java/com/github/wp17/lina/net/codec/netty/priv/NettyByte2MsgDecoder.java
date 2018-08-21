@@ -2,10 +2,7 @@ package com.github.wp17.lina.net.codec.netty.priv;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.github.wp17.lina.common.message.IMessage;
 import com.github.wp17.lina.net.packet.NettyInBound;
@@ -17,9 +14,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-@Component
 public class NettyByte2MsgDecoder extends ByteToMessageDecoder {
-	private static final Logger log = LoggerFactory.getLogger(NettyByte2MsgDecoder.class);
 	@Autowired private MessageFactory messageFactory;
 	
 	@Override

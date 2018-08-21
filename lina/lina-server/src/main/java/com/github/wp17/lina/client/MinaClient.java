@@ -7,8 +7,6 @@ import org.apache.mina.core.future.IoFutureListener;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.github.wp17.lina.net.codec.mina.CodecFactory;
 import com.github.wp17.lina.net.codec.mina.MinaLengthFieldDecoder;

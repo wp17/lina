@@ -16,9 +16,11 @@ import javax.net.ssl.TrustManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 
 import com.github.wp17.lina.net.codec.netty.priv.NettyByte2MsgDecoder;
 import com.github.wp17.lina.net.codec.netty.priv.NettyMsg2ByteEncoder;
@@ -128,6 +130,7 @@ public class NettyConfig {
 	}
 	
 	@Bean(name = "nettyByte2MsgDecoder")
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public NettyByte2MsgDecoder nettyByte2MsgDecoder() {
 		return new NettyByte2MsgDecoder();
 	}
