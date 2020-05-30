@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "com.github.wp17.lina.proto.msg";
+option java_outer_classname = "G2ZProto";
+import "options.proto";
+
+/*游戏服向大区服注册*/
+message G2ZGameRegisterReq {
+    option (messageId) = 4001;
+    string host = 1;
+    int32 port = 2;
+}

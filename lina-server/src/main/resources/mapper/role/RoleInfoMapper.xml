@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.wp17.lina.game.module.db.mapper.role.RoleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.github.wp17.lina.game.module.db.mapper.role.RoleInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" >
+    delete from role_info_#{tableId}
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.github.wp17.lina.game.module.db.mapper.role.RoleInfo">
+    insert into role_info_#{tableId} (id, user_id, nickname, 
+      icon, sex, level, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{level,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.github.wp17.lina.game.module.db.mapper.role.RoleInfo">
+    update role_info_#{tableId}
+    set user_id = #{userId,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      level = #{level,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
+    select id, user_id, nickname, icon, sex, level, create_time, update_time
+    from role_info_#{tableId}
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, nickname, icon, sex, level, create_time, update_time
+    from role_info_#{tableId}
+  </select>
+</mapper>

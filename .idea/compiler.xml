@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="lina-rank" />
+        <module name="lina-common" />
+        <module name="lina-server" />
+        <module name="lina-proto" />
+        <module name="lina-config" />
+        <module name="lina-zone" />
+        <module name="lina-util" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="all" target="1.8" />
+      <module name="lina-common" target="1.8" />
+      <module name="lina-config" target="1.8" />
+      <module name="lina-proto" target="1.8" />
+      <module name="lina-rank" target="1.8" />
+      <module name="lina-server" target="1.8" />
+      <module name="lina-util" target="1.8" />
+      <module name="lina-zone" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="lina-proto" options="-bootclasspath $PROJECT_DIR$/../../Java/jdk1.8.0_101/jre\lib\rt.jar;$PROJECT_DIR$/../../Java/jdk1.8.0_101/jre\lib\jce.jar" />
+    </option>
+  </component>
+</project>

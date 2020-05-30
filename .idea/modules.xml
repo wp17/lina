@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/all.iml" filepath="$PROJECT_DIR$/all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-common/lina-common.iml" filepath="$PROJECT_DIR$/lina-common/lina-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-config/lina-config.iml" filepath="$PROJECT_DIR$/lina-config/lina-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-proto/lina-proto.iml" filepath="$PROJECT_DIR$/lina-proto/lina-proto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-rank/lina-rank.iml" filepath="$PROJECT_DIR$/lina-rank/lina-rank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-server/lina-server.iml" filepath="$PROJECT_DIR$/lina-server/lina-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-util/lina-util.iml" filepath="$PROJECT_DIR$/lina-util/lina-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-zone/lina-zone.iml" filepath="$PROJECT_DIR$/lina-zone/lina-zone.iml" />
+    </modules>
+  </component>
+</project>

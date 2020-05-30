@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "com.github.wp17.lina.proto.msg";
+option java_outer_classname = "Options";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+    int32 messageId = 51235;
+}

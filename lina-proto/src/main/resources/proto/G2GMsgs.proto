@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_package = "com.github.wp17.lina.proto.msg";
+option java_outer_classname = "G2GProto";
+import "options.proto";
+
+/*广播缓存过期消息*/
+message G2GExpireCacheReq {
+    option (messageId) = 3001;
+    string cacheKey = 1;
+}
