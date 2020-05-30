@@ -38,7 +38,7 @@
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.50.Final" level="project" />
     <orderEntry type="module" module-name="lina-common" />
     <orderEntry type="module" module-name="lina-util" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.7" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.31" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.5.1" level="project" />
     <orderEntry type="module" module-name="lina-proto" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk16:1.46" level="project" />
