@@ -11,7 +11,7 @@ public abstract class Sprite extends Obj {
         session.setObj(this);
     }
 
-    protected AbstractSession getSession() {
+    public AbstractSession getSession() {
         return session;
     }
 }

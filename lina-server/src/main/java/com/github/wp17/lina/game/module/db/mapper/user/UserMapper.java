@@ -5,11 +5,11 @@ import com.github.wp17.lina.game.module.db.mapper.user.User;
 import java.util.List;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Long id, @Param("tableId") Integer tableId);
+    int deleteByPrimaryKey(@Param("id") Long id, @Param("tableId") Integer tableId);
 
     int insert(User record);
 
-    User selectByPrimaryKey(Long id, @Param("tableId") Integer tableId);
+    User selectByPrimaryKey(@Param("id") Long id, @Param("tableId") Integer tableId);
 
     List<User> selectAll(@Param("tableId") Integer tableId);
 

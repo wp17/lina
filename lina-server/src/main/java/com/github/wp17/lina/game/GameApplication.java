@@ -1,6 +1,7 @@
 package com.github.wp17.lina.game;
 
 import com.github.wp17.lina.common.log.LoggerProvider;
+import com.github.wp17.lina.game.module.log.LogModule;
 import com.github.wp17.lina.game.spring.SpringContext;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ public class GameApplication {
     private static GameServer server;
 
     public static void main(String[] args) {
-//        LogModule.getInstance().init();
+        LogModule.getInstance().init();
         SpringContext.getInstance().init();
         server = new GameServer(ServerConfig.serverId, ServerConfig.port);
         server.startup();

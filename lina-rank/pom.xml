@@ -118,11 +118,17 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.github.wp17.lina</groupId>
             <artifactId>lina-common</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.wp17.lina</groupId>
+                    <artifactId>lina-proto</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
         <dependency>
             <groupId>com.github.wp17.lina</groupId>
             <artifactId>lina-proto</artifactId>

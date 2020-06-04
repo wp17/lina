@@ -1,6 +1,7 @@
 package com.github.wp17.lina.game.module.log;
 
 import com.github.wp17.lina.game.module.AbsModule;
+import org.apache.log4j.xml.DOMConfigurator;
 
 public class LogModule implements AbsModule {
 	private LogModule() {}
@@ -11,7 +12,7 @@ public class LogModule implements AbsModule {
 
 	@Override
 	public void init() {
-//		DOMConfigurator.configureAndWatch("log4j.xml");
+		DOMConfigurator.configureAndWatch("log4j.xml");
 	}
 
 	@Override

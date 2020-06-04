@@ -5,11 +5,16 @@ import com.github.wp17.lina.common.util.CommonUtil;
 public class DefaultPacket extends AbstractPacket {
     public byte[] body;
 
-    private DefaultPacket() {
+    public DefaultPacket(byte[] body) {
+        super(new PacketHeader());
+        this.body = body;
+        setBodyLength(body.length);
     }
 
-    public DefaultPacket(byte[] body) {
+    public DefaultPacket(byte[] body, PacketHeader header) {
+        super(header);
         this.body = body;
+        setBodyLength(body.length);
     }
 
     public byte[] toByte() {

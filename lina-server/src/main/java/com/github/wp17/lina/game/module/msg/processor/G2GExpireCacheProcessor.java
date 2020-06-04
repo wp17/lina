@@ -1,6 +1,5 @@
 package com.github.wp17.lina.game.module.msg.processor;
 
-import com.github.wp17.lina.common.msg.MessageClazz;
 import com.github.wp17.lina.common.msg.MessageID;
 import com.github.wp17.lina.common.net.DefaultPacket;
 import com.github.wp17.lina.game.module.msg.MQMsgProcessor;
@@ -14,7 +13,6 @@ import java.util.Objects;
 
 @Slf4j
 @MessageID(GameMsgId.g2g_expire_req)
-@MessageClazz(G2GProto.G2GExpireCacheReq.class)
 public class G2GExpireCacheProcessor extends MQMsgProcessor {
     @Override
     public void process(DefaultPacket packet) {

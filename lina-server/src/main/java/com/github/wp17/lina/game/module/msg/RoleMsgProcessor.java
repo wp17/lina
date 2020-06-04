@@ -9,7 +9,7 @@ import com.github.wp17.lina.game.logic.Role;
 public abstract class RoleMsgProcessor implements IMsgProcessor {
 
 	@Override
-	public void process(AbstractSession session, AbstractPacket msg) {
+	public final void process(AbstractSession session, AbstractPacket msg) {
 		Role role = session.getObj();
 		DefaultPacket packet = (DefaultPacket) msg;
 		process(role,packet);

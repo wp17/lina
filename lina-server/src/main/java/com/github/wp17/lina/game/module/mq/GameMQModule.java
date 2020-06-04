@@ -4,8 +4,6 @@ import com.github.wp17.lina.common.net.DefaultPacket;
 import com.github.wp17.lina.common.util.RabbitConst;
 import com.github.wp17.lina.game.GameApplication;
 import com.github.wp17.lina.game.module.AbsModule;
-import com.github.wp17.lina.game.module.log.LogModule;
-import com.github.wp17.lina.game.module.msg.GameMessageModule;
 import com.github.wp17.lina.game.spring.SpringContext;
 import com.github.wp17.lina.proto.msg.G2GProto;
 import com.github.wp17.lina.proto.msg.Options;
@@ -50,11 +48,8 @@ public class GameMQModule implements AbsModule {
         int msgId = msg.getDescriptorForType().getOptions().getExtension(Options.messageId);
 
         DefaultPacket packet = new DefaultPacket(body);
-        packet.setMsgID((short) msgId);
-        packet.setBodyLength(body.length);
+        packet.setMsgId(msgId);
         packet.setCheckSum(-1);
-        packet.setSeq(-1);
-
         return packet;
     }
 

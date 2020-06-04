@@ -1,9 +1,9 @@
-package com.github.wp17.lina.config.data;
+package com.github.wp17.lina.config.template;
 
-import com.github.wp17.lina.common.csv.ConfigData;
+import com.github.wp17.lina.config.common.ConfigMetadata;
 
-@ConfigData(charset="utf-8", path="/lina-server/src/main/resources/csv/line.csv")
-public class LineData {
+@ConfigMetadata(charset="utf-8", path="line.csv")
+public class LineTemplate {
 	private int server_id;
 	private int id;
 	private String name;

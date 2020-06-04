@@ -616,9 +616,10 @@ public final class TestProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ntest.proto\" \n\004Test\022\n\n\002id\030\001 \001(\005\022\014\n\004name" +
-      "\030\002 \001(\tB+\n\036com.github.wp17.lina.proto.msg" +
-      "B\tTestProtob\006proto3"
+      "\n\ntest.proto\032\roptions.proto\"\'\n\004Test\022\n\n\002i" +
+      "d\030\001 \001(\005\022\014\n\004name\030\002 \001(\t:\005\230\202\031\217NB+\n\036com.gith" +
+      "ub.wp17.lina.proto.msgB\tTestProtob\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -631,6 +632,7 @@ public final class TestProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.github.wp17.lina.proto.msg.Options.getDescriptor(),
         }, assigner);
     internal_static_Test_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -638,6 +640,12 @@ public final class TestProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Test_descriptor,
         new java.lang.String[] { "Id", "Name", });
+    com.google.protobuf.ExtensionRegistry registry =
+        com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(com.github.wp17.lina.proto.msg.Options.messageId);
+    com.google.protobuf.Descriptors.FileDescriptor
+        .internalUpdateFileDescriptor(descriptor, registry);
+    com.github.wp17.lina.proto.msg.Options.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

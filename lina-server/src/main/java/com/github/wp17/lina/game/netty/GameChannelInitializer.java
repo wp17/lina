@@ -3,9 +3,11 @@ package com.github.wp17.lina.game.netty;
 import com.github.wp17.lina.common.codec.VarTypeProtobufDecoder;
 import com.github.wp17.lina.common.codec.VarTypeProtobufEncoder;
 import com.github.wp17.lina.common.net.IPacket;
+import com.github.wp17.lina.game.netty.handler.GameHandshakeHandler;
 import com.github.wp17.lina.game.netty.handler.NettyHeartbeatHandler;
 import com.github.wp17.lina.game.netty.handler.GameLogicHandler;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
@@ -22,7 +24,7 @@ import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
-public class ProtobufChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class GameChannelInitializer extends ChannelInitializer<SocketChannel> {
 
 	@Override
 	protected void initChannel(SocketChannel ch) {
@@ -32,18 +34,27 @@ public class ProtobufChannelInitializer extends ChannelInitializer<SocketChannel
 		.addLast(new VarTypeProtobufDecoder())
 		.addLast(new VarTypeProtobufEncoder())
 		.addLast(new GameLogicHandler())
+        .addLast(handshakeHandler())
 		.addLast(new NettyHeartbeatHandler())
 		;
 	}
 
+	/**空闲链路检测*/
 	public IdleStateHandler idleStateHandler() {
 		return new IdleStateHandler(10, 10, 5, TimeUnit.SECONDS);
 	}
 
+	/**读超时处理器*/
 	public ReadTimeoutHandler readTimeoutHandler() {
 		return new ReadTimeoutHandler(30);
 	}
 
+	/**握手协议处理器*/
+	public ChannelHandler handshakeHandler() {
+		return new GameHandshakeHandler();
+	}
+
+	/**ssl协议处理器*/
 	public SslHandler sslHandler() throws Exception {
 		return new SslHandler(createSslEngine(), false);
 	}

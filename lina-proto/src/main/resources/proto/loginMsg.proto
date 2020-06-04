@@ -1,16 +1,54 @@
 syntax = "proto3";
 option java_package = "com.github.wp17.lina.proto.msg";
 option java_outer_classname = "LoginProto";
+import "options.proto";
 
 message C2GLoginReq {
+    option (messageId) = 10001;
     string username = 1;
     string password = 2;
     int32 platform = 3;
 }
 
 message G2CLoginResp {
+    option (messageId) = 10002;
     int32 result = 1;
     string tips = 2;
 }
 
-message HeartBeatReq {}
+message HandshakeSyn {
+    option (messageId) = 0;
+    int32 salt = 1;
+
+}
+
+message HandshakeAck {
+    option (messageId) = 1;
+}
+
+message HeartBeatReq {
+    option (messageId) = 9998;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

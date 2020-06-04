@@ -1327,6 +1327,844 @@ public final class LoginProto {
 
   }
 
+  public interface HandshakeSynOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HandshakeSyn)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 salt = 1;</code>
+     */
+    int getSalt();
+  }
+  /**
+   * Protobuf type {@code HandshakeSyn}
+   */
+  public  static final class HandshakeSyn extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HandshakeSyn)
+      HandshakeSynOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HandshakeSyn.newBuilder() to construct.
+    private HandshakeSyn(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HandshakeSyn() {
+      salt_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private HandshakeSyn(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              salt_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeSyn_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeSyn_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.class, com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.Builder.class);
+    }
+
+    public static final int SALT_FIELD_NUMBER = 1;
+    private int salt_;
+    /**
+     * <code>int32 salt = 1;</code>
+     */
+    public int getSalt() {
+      return salt_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (salt_ != 0) {
+        output.writeInt32(1, salt_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (salt_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, salt_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn)) {
+        return super.equals(obj);
+      }
+      com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn other = (com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn) obj;
+
+      boolean result = true;
+      result = result && (getSalt()
+          == other.getSalt());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SALT_FIELD_NUMBER;
+      hash = (53 * hash) + getSalt();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HandshakeSyn}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HandshakeSyn)
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeSynOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeSyn_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeSyn_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.class, com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.Builder.class);
+      }
+
+      // Construct using com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        salt_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeSyn_descriptor;
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn getDefaultInstanceForType() {
+        return com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.getDefaultInstance();
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn build() {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn buildPartial() {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn result = new com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn(this);
+        result.salt_ = salt_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn) {
+          return mergeFrom((com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn other) {
+        if (other == com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn.getDefaultInstance()) return this;
+        if (other.getSalt() != 0) {
+          setSalt(other.getSalt());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int salt_ ;
+      /**
+       * <code>int32 salt = 1;</code>
+       */
+      public int getSalt() {
+        return salt_;
+      }
+      /**
+       * <code>int32 salt = 1;</code>
+       */
+      public Builder setSalt(int value) {
+        
+        salt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 salt = 1;</code>
+       */
+      public Builder clearSalt() {
+        
+        salt_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HandshakeSyn)
+    }
+
+    // @@protoc_insertion_point(class_scope:HandshakeSyn)
+    private static final com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn();
+    }
+
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HandshakeSyn>
+        PARSER = new com.google.protobuf.AbstractParser<HandshakeSyn>() {
+      public HandshakeSyn parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new HandshakeSyn(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HandshakeSyn> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HandshakeSyn> getParserForType() {
+      return PARSER;
+    }
+
+    public com.github.wp17.lina.proto.msg.LoginProto.HandshakeSyn getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HandshakeAckOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HandshakeAck)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code HandshakeAck}
+   */
+  public  static final class HandshakeAck extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HandshakeAck)
+      HandshakeAckOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HandshakeAck.newBuilder() to construct.
+    private HandshakeAck(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HandshakeAck() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private HandshakeAck(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeAck_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeAck_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.class, com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck)) {
+        return super.equals(obj);
+      }
+      com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck other = (com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HandshakeAck}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HandshakeAck)
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeAckOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeAck_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeAck_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.class, com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.Builder.class);
+      }
+
+      // Construct using com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.wp17.lina.proto.msg.LoginProto.internal_static_HandshakeAck_descriptor;
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck getDefaultInstanceForType() {
+        return com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.getDefaultInstance();
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck build() {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck buildPartial() {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck result = new com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck) {
+          return mergeFrom((com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck other) {
+        if (other == com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HandshakeAck)
+    }
+
+    // @@protoc_insertion_point(class_scope:HandshakeAck)
+    private static final com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck();
+    }
+
+    public static com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HandshakeAck>
+        PARSER = new com.google.protobuf.AbstractParser<HandshakeAck>() {
+      public HandshakeAck parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new HandshakeAck(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HandshakeAck> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HandshakeAck> getParserForType() {
+      return PARSER;
+    }
+
+    public com.github.wp17.lina.proto.msg.LoginProto.HandshakeAck getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface HeartBeatReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:HeartBeatReq)
       com.google.protobuf.MessageOrBuilder {
@@ -1725,6 +2563,16 @@ public final class LoginProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_G2CLoginResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HandshakeSyn_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HandshakeSyn_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HandshakeAck_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HandshakeAck_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_HeartBeatReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -1738,12 +2586,14 @@ public final class LoginProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016loginMsg.proto\"C\n\013C2GLoginReq\022\020\n\010usern" +
-      "ame\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010platform\030" +
-      "\003 \001(\005\",\n\014G2CLoginResp\022\016\n\006result\030\001 \001(\005\022\014\n" +
-      "\004tips\030\002 \001(\t\"\016\n\014HeartBeatReqB,\n\036com.githu" +
-      "b.wp17.lina.proto.msgB\nLoginProtob\006proto" +
-      "3"
+      "\n\016loginMsg.proto\032\roptions.proto\"J\n\013C2GLo" +
+      "ginReq\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001" +
+      "(\t\022\020\n\010platform\030\003 \001(\005:\005\230\202\031\221N\"3\n\014G2CLoginR" +
+      "esp\022\016\n\006result\030\001 \001(\005\022\014\n\004tips\030\002 \001(\t:\005\230\202\031\222N" +
+      "\"\"\n\014HandshakeSyn\022\014\n\004salt\030\001 \001(\005:\004\230\202\031\000\"\024\n\014" +
+      "HandshakeAck:\004\230\202\031\001\"\025\n\014HeartBeatReq:\005\230\202\031\216" +
+      "NB,\n\036com.github.wp17.lina.proto.msgB\nLog" +
+      "inProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1756,6 +2606,7 @@ public final class LoginProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.github.wp17.lina.proto.msg.Options.getDescriptor(),
         }, assigner);
     internal_static_C2GLoginReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1769,12 +2620,30 @@ public final class LoginProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_G2CLoginResp_descriptor,
         new java.lang.String[] { "Result", "Tips", });
-    internal_static_HeartBeatReq_descriptor =
+    internal_static_HandshakeSyn_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_HandshakeSyn_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HandshakeSyn_descriptor,
+        new java.lang.String[] { "Salt", });
+    internal_static_HandshakeAck_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_HandshakeAck_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HandshakeAck_descriptor,
+        new java.lang.String[] { });
+    internal_static_HeartBeatReq_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_HeartBeatReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatReq_descriptor,
         new java.lang.String[] { });
+    com.google.protobuf.ExtensionRegistry registry =
+        com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(com.github.wp17.lina.proto.msg.Options.messageId);
+    com.google.protobuf.Descriptors.FileDescriptor
+        .internalUpdateFileDescriptor(descriptor, registry);
+    com.github.wp17.lina.proto.msg.Options.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -9,7 +9,6 @@ public class RoleBeanFactory {
 
         long id = IDModule.getInstance().genRoleId();
         roleInfo.setId(id);
-
         roleInfo.setUserId(userId);
         roleInfo.setNickname(nickName);
         roleInfo.setLevel(0);

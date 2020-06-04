@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/all.iml" filepath="$PROJECT_DIR$/all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lina-client/lina-client.iml" filepath="$PROJECT_DIR$/lina-client/lina-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/lina-common/lina-common.iml" filepath="$PROJECT_DIR$/lina-common/lina-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/lina-config/lina-config.iml" filepath="$PROJECT_DIR$/lina-config/lina-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/lina-proto/lina-proto.iml" filepath="$PROJECT_DIR$/lina-proto/lina-proto.iml" />

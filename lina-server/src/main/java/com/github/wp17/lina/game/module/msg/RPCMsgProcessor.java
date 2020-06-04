@@ -5,10 +5,10 @@ import com.github.wp17.lina.common.net.AbstractPacket;
 import com.github.wp17.lina.common.net.AbstractSession;
 import com.github.wp17.lina.common.net.DefaultPacket;
 
-/**rank服务器发送给game服务器消息的处理器*/
+/**rpc消息处理器*/
 public abstract class RPCMsgProcessor implements IMsgProcessor {
     @Override
-    public void process(AbstractSession session, AbstractPacket packet) {
+    public final void process(AbstractSession session, AbstractPacket packet) {
         process((DefaultPacket) packet);
     }
 

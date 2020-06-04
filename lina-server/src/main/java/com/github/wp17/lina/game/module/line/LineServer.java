@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import com.github.wp17.lina.common.log.LoggerProvider;
 import com.github.wp17.lina.common.net.AbstractPacket;
-import com.github.wp17.lina.config.data.LineData;
+import com.github.wp17.lina.config.template.LineTemplate;
 import com.github.wp17.lina.game.module.execute.ExecutorModule;
 import com.github.wp17.lina.game.logic.Role;
 
 public class LineServer {
-    private LineData lineData;
+    private LineTemplate lineTemplate;
     private CountDownLatch countDownLatch;
     private final AtomicBoolean running = new AtomicBoolean();
     private final AtomicBoolean closed = new AtomicBoolean();
@@ -23,8 +23,8 @@ public class LineServer {
     public LineServer() {
     }
 
-    public void setLineData(LineData lineData) {
-        this.lineData = lineData;
+    public void setLineTemplate(LineTemplate lineTemplate) {
+        this.lineTemplate = lineTemplate;
     }
 
     public void setCountDownLatch(CountDownLatch countDownLatch) {
@@ -50,7 +50,7 @@ public class LineServer {
     }
 
     public int getId() {
-        return lineData.getId();
+        return lineTemplate.getId();
     }
 
     public void addRole(Role role) {

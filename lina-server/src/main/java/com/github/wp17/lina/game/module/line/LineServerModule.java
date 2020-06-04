@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import com.github.wp17.lina.common.log.LoggerProvider;
-import com.github.wp17.lina.config.data.LineData;
+import com.github.wp17.lina.config.template.LineTemplate;
 import com.github.wp17.lina.game.module.AbsModule;
 import com.github.wp17.lina.game.module.ModuleInitOrder;
 import com.github.wp17.lina.game.config.provider.LineDataProvider;
@@ -33,18 +33,18 @@ public class LineServerModule implements AbsModule {
 
     @Override
     public void init() {
-        List<LineData> lineList =
-                Lists.newArrayList(LineDataProvider.getInstance().getDatas())
+        List<LineTemplate> lineList =
+                Lists.newArrayList(LineDataProvider.getInstance().getTemplates())
                 .stream()
 //                .filter(data -> ServerHolder.server().getId() == data.getServer_id())
                 .collect(Collectors.toList());
 
         if (num.compareAndSet(0, lineList.size())) {
             CountDownLatch latch = new CountDownLatch(num.intValue());
-            for (LineData data : lineList) {
+            for (LineTemplate data : lineList) {
                 LineServer lineServer = new LineServer();
                 lineServer.setCountDownLatch(latch);
-                lineServer.setLineData(data);
+                lineServer.setLineTemplate(data);
                 lineServer.startup();
                 lineServers.put(lineServer.getId(), lineServer);
             }

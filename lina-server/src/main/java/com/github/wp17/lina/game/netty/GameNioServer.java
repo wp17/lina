@@ -10,6 +10,6 @@ public class GameNioServer extends NioServer {
 
     @Override
     public ChannelInitializer channelInitializer() {
-        return new ProtobufChannelInitializer();
+        return new GameChannelInitializer();
     }
 }

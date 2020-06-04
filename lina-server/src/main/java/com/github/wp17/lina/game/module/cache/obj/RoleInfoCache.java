@@ -12,16 +12,16 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @InfoClass(RoleInfo.class)
-public class RoleInfoCache implements ICacheObj<RoleInfo> {
-    private RoleInfo roleInfo;
+public class RoleInfoCache implements ICacheObj<RoleInfo, Long> {
+    private volatile RoleInfo roleInfo;
 
     @Override
-    public void loadDB(long id) {
+    public void loadDB(Long id) {
         roleInfo = RoleInfoDataProvider.getInstance().selectById(id);
     }
 
     @Override
-    public void loadRedis(long id) {
+    public void loadRedis(Long id) {
         roleInfo = CacheModule.getInstance().loadRedis(id, CacheKey.role_info_cache);
     }
 

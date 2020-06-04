@@ -9,7 +9,7 @@
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 		    <param name="LevelMax" value="error" />
-		    <param name="LevelMin" value="warn" />
+		    <param name="LevelMin" value="info" />
 		    <param name="AcceptOnMatch" value="true"/>
 		</filter>
 	</appender>
@@ -63,7 +63,7 @@
 	</logger>
 	
 	<root>
-	    <level value="warn" />
+	    <level value="info" />
 		<appender-ref ref="console" />
 		<appender-ref ref="asyncInfoAppender"/>
 	</root>

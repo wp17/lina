@@ -47,6 +47,12 @@ public class DBModule implements AbsModule {
     }
 
     public static void main(String[] args) throws SQLException {
+        SpringContext.getInstance().init();
+        System.out.println(RoleDbConfig.getDsId(1268312771771109377L));
+        System.out.println(RoleDbConfig.getTableId(1268312771771109377L));
+    }
+
+    public static void gen() throws SQLException {
         LogModule.getInstance().init();
         SpringContext.getInstance().init();
         ExecutorModule.getInstance().init();
@@ -78,5 +84,7 @@ public class DBModule implements AbsModule {
                         ";").execute();
             }
         }
+
+        System.out.println("*******************************");
     }
 }

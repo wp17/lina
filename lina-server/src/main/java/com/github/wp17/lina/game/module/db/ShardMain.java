@@ -71,7 +71,7 @@ public class ShardMain {
                     code = code.replace("()", "(@Param(\"tableId\") Integer tableId)");
                 else if (code.contains("Long id"))
                     code =  code.replace("Long id",
-                            "Long id, @Param(\"tableId\") Integer tableId");
+                            "@Param(\"id\") Long id, @Param(\"tableId\") Integer tableId");
                 builder.append(code).append(System.lineSeparator());
 
                 if (code.contains("package "))
