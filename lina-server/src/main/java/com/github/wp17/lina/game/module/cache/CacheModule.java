@@ -26,7 +26,7 @@ public class CacheModule implements AbsModule {
     private RedisService redisService;
     private GuavaCacheService guavaCacheService;
 
-    public <T> T get(long id, CacheKey cacheKey) {
+    public <T> T get(Object id, CacheKey cacheKey) {
         String key = buildKey(id, cacheKey);
 
         ICacheObj cacheObj = guavaCacheService.getIfPresent(key);
@@ -60,31 +60,31 @@ public class CacheModule implements AbsModule {
         return null;
     }
 
-    public boolean invalidate(long id, CacheKey cacheKey) {
+    public boolean invalidate(Object id, CacheKey cacheKey) {
         String key = buildKey(id, cacheKey);
         return invalidate(key);
     }
 
-    public boolean invalidate(String key) {
-        boolean result = redisService.invalidate(key);
+    public boolean invalidate(String completeKey) {
+        boolean result = redisService.invalidate(completeKey);
         if (result) {
-            guavaCacheService.invalidate(key);
+            guavaCacheService.invalidate(completeKey);
             return true;
         } else return false;
     }
 
-    public void invalidateLocal(String key) {
-        guavaCacheService.invalidate(key);
+    public void invalidateLocal(String completeKey) {
+        guavaCacheService.invalidate(completeKey);
     }
 
-    public <T> T loadRedis(long id, CacheKey cacheKey) {
+    public <T> T loadRedis(Object id, CacheKey cacheKey) {
         String key = buildKey(id, cacheKey);
         String strValue = redisService.getSync(key);
-        Class clazz = cacheKey.clazz.getAnnotationsByType(InfoClass.class)[0].value();
+        Class clazz = cacheKey.clazz.getAnnotation(InfoClass.class).value();
         return (T) JSONObject.parseObject(strValue, clazz);
     }
 
-    private String buildKey(long id, CacheKey cacheKey) {
+    private String buildKey(Object id, CacheKey cacheKey) {
         return new StringBuffer().append(id).append("_").append(cacheKey.name()).toString();
     }
 

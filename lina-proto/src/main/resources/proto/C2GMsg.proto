@@ -1,0 +1,4 @@
+syntax = "proto3";
+option java_package = "com.github.wp17.lina.proto.msg";
+option java_outer_classname = "C2GMsgProto";
+import "options.proto";

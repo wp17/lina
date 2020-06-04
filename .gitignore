@@ -1,2 +1,12 @@
 /target/
+/lina-rank/target/
+/lina-proto/target/
+/lina-config/target/
+/lina-common/target/
+/lina-server/target/
+/lina-util/target/
+/lina-zone/target/
 /lina-common/lina-common.iml
+/config/
+/lina-rank/logs/
+/lina-client/
