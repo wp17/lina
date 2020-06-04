@@ -1,4 +1,4 @@
-package com.github.wp17.lina.common.csv;
+package com.github.wp17.lina.config.common;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfigData {
-	String path() default "";
-	String charset() default "UTF-8";
+public @interface Reload {
 }
