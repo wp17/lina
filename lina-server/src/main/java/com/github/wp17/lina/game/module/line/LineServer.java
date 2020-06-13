@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import com.github.wp17.lina.common.log.LoggerProvider;
-import com.github.wp17.lina.common.net.AbstractPacket;
 import com.github.wp17.lina.config.template.LineTemplate;
+import com.github.wp17.lina.game.logic.room.IRoom;
 import com.github.wp17.lina.game.module.execute.ExecutorModule;
 import com.github.wp17.lina.game.logic.Role;
 
@@ -18,6 +18,7 @@ public class LineServer {
     private final AtomicBoolean running = new AtomicBoolean();
     private final AtomicBoolean closed = new AtomicBoolean();
     private final Map<Long, Role> roles = new ConcurrentHashMap<Long, Role>();
+    private final Map<Long, IRoom> rooms = new ConcurrentHashMap<>();
     private final AtomicReference<Processor> processorRef = new AtomicReference<Processor>();
 
     public LineServer() {
@@ -43,6 +44,9 @@ public class LineServer {
             return;
         }
         running.compareAndSet(true, false);
+        for (IRoom room : rooms.values()) {
+            room.close();
+        }
         for (Role role : roles.values()) {
             role.downLine();
         }
@@ -61,8 +65,32 @@ public class LineServer {
         roles.remove(role.getRoleUuid());
     }
 
+    public void remRole(long roleUuid) {
+        roles.remove(roleUuid);
+    }
+
     public Role getRole(Long roleId) {
         return roles.get(roleId);
+    }
+
+    public void addRoom(IRoom room) {
+        rooms.put(room.getId(), room);
+    }
+
+    public void remRoom(long roomId) {
+        rooms.remove(roomId);
+    }
+
+    public IRoom getRoom(long roomId) {
+        return rooms.get(roomId);
+    }
+
+    public int getRoleNum() {
+        return  roles.size();
+    }
+
+    public boolean isBusy() {
+        return roles.size() >= 500;
     }
 
     private class Processor implements Runnable {
@@ -70,23 +98,18 @@ public class LineServer {
         public void run() {
             countDownLatch.countDown();
             while (running.get()) {
-                for (Role role : roles.values()) {
-                    processMsg(role);
+                for (IRoom room : rooms.values()) {
+                    room.upFrame();
                 }
-
+                for (Role role : roles.values()) {
+                    role.upFrame();
+                }
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     LoggerProvider.addExceptionLog("", e);
                 }
             }
-        }
-    }
-
-    private void processMsg(Role role) {
-        AbstractPacket packet = null;
-        while ((packet = role.pollMsg()) != null) {
-            role.processMsg(packet);
         }
     }
 }

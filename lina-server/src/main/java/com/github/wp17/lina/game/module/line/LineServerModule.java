@@ -64,8 +64,8 @@ public class LineServerModule implements AbsModule {
     public void addRole(Role role) {
         roles.put(role.getRoleUuid(), role);
         LineServer lineServer = selectServer(role.getRoleUuid());
-        lineServer.addRole(role);
         role.setLineServer(lineServer);
+        lineServer.addRole(role);
     }
 
     public void roleDownLine(Role role) {
@@ -91,6 +91,12 @@ public class LineServerModule implements AbsModule {
     private LineServer selectServer(Long roleUuId) {
         int index = (int) (roleUuId % num.get());
         return lineServers.get(index);
+    }
+
+    public void changeLine(Role role, LineServer newLine) {
+        role.getLineServer().remRole(role);
+        role.setLineServer(newLine);
+        newLine.addRole(role);
     }
 
     @Override

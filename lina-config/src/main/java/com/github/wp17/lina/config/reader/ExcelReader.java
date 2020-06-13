@@ -4,7 +4,6 @@ import com.github.wp17.lina.config.common.ConfigMetadata;
 import com.github.wp17.lina.config.excel.ExcelSheet;
 import com.github.wp17.lina.config.excel.ExcelWorkbook;
 import com.squareup.javawriter.JavaWriter;
-import gnu.trove.impl.sync.TSynchronizedIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import lombok.Data;
 import org.springframework.util.StringUtils;
@@ -18,7 +17,7 @@ import static javax.lang.model.element.Modifier.*;
 
 public class ExcelReader {
 
-    public static TSynchronizedIntObjectMap load(Class<?> clazz, File baseDir) throws Exception {
+    public static TIntObjectHashMap load(Class<?> clazz, File baseDir) throws Exception {
         String fileName = clazz.getAnnotation(ConfigMetadata.class).path();
         File file = new File(baseDir, fileName);
 
@@ -31,7 +30,7 @@ public class ExcelReader {
         ExcelWorkbook workbook = new ExcelWorkbook(file);
         ExcelSheet st = workbook.getSheet(sheetIndex);
 
-        TSynchronizedIntObjectMap templates = new TSynchronizedIntObjectMap(new TIntObjectHashMap());
+        TIntObjectHashMap templates = new TIntObjectHashMap();
         do {
             String idStr = st.getString(row, col);
             if (StringUtils.isEmpty(idStr)) {

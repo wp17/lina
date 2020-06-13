@@ -6,6 +6,7 @@ import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.async.RedisAdvancedClusterAsyncCommands;
 import io.lettuce.core.cluster.api.sync.RedisAdvancedClusterCommands;
+import io.lettuce.core.masterreplica.MasterReplica;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class RedisService {
 
             ClusterClientOptions options = ClusterClientOptions.builder()
                     .autoReconnect(true)
-                    .maxRedirects(1)
+                    .maxRedirects(5)
                     .build();
 
             client.setOptions(options);
