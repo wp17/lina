@@ -19,7 +19,7 @@
         <java.version>1.8</java.version>
         <lina.version>1.0-SNAPSHOT</lina.version>
         <grpc.version>1.21.0</grpc.version>
-        <spring.version>5.2.6.RELEASE</spring.version>
+        <spring.version>5.2.21.RELEASE</spring.version>
     </properties>
 
     <modules>
